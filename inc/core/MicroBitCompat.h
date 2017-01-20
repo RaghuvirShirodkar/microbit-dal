@@ -108,4 +108,27 @@ int string_reverse(char *s);
   */
 int itoa(int n, char *s);
 
+/**
+  * Converts a given unsigned long into a string representation.
+  *
+  * @param n The number to convert.
+  *
+  * @param s A pointer to the buffer where the resulting string will be stored.
+  *
+  * @return MICROBIT_OK, or MICROBIT_INVALID_PARAMETER.
+  */
+int ultoa(unsigned long n, char *s);
+
+
+/**
+  * Converts a given integer into a string representation.
+  *
+  * @param n The number to convert.
+  *
+  * @param s A pointer to the buffer where the resulting string will be stored.
+  *
+  * @return MICROBIT_OK, or MICROBIT_INVALID_PARAMETER.
+  */
+int dtoa(double n, char *s);
+
 #endif
