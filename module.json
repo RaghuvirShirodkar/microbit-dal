@@ -1,10 +1,14 @@
 {
   "name": "microbit-dal",
+<<<<<<< 7f747e0e1683976e05443844d62b16d6619b1683
 <<<<<<< 2cb019e45be9cd72b27b78c7d5b8a597ef49809e
   "version": "2.0.0-calliope-1.0.5",
 =======
   "version": "2.0.0-rc7-calliope-1.0.1-or1",
 >>>>>>> bump version
+=======
+  "version": "2.0.0-rc8-calliope-1.0.2-or",
+>>>>>>> #433 bump version for adding find element in array
   "license": "MIT",
   "description": "The runtime library for the Calliope mini, based on the dal for BBC micro:bit, developed by Lancaster University",
   "keywords": [
