@@ -852,6 +852,31 @@ MicroBitImage MicroBitImage::shiftImageDown(int16_t n)
     return imgCopy;
 }
 
+/**
+  * Inverts the pixels of a copy of this Image.
+  *
+  *
+  * @return new inverted Image.
+  *
+  * @code
+  * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+  * MicroBitImage i(10,5,heart);
+  * i.invert();
+  * @endcode
+  */
+MicroBitImage MicroBitImage::invert()
+{
+    MicroBitImage invertedImage(getWidth(), getHeight());
+    for (int i = 0; i < getWidth(); i++) {
+      for (int j = 0; j < getHeight(); j++) {
+        invertedImage.setPixelValue(i, j, 255-getPixelValue(i, j));
+      }
+    }
+
+    return invertedImage;
+}
+
+
 
 /**
   * Converts the bitmap to a csv ManagedString.
