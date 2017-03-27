@@ -73,7 +73,7 @@ MicroBitAccelerometer::MicroBitAccelerometer(CoordinateSpace &cspace, uint16_t i
  * Device autodetection. Scans the given I2C bus for supported accelerometer devices.
  * if found, constructs an appropriate driver and returns it.
  *
- * @param i2c the bus to scan. 
+ * @param i2c the bus to scan.
  * @param id the unique EventModel id of this component. Defaults to: MICROBIT_ID_ACCELEROMETER
  *
  */
@@ -139,7 +139,6 @@ MicroBitAccelerometer& MicroBitAccelerometer::autoDetect(MicroBitI2C &i2c)
 
     return *MicroBitAccelerometer::detectedAccelerometer;
 }
-
 
 /**
   * Stores data from the accelerometer sensor in our buffer, and perform gesture tracking.
@@ -519,6 +518,25 @@ int MicroBitAccelerometer::getZ()
 }
 
 /**
+  * Determines the magnitude of the vector from the latest update retrieved from the accelerometer
+  *
+  * @return The magnitude of the vector, in milli-g.
+  *
+  * @code
+  * accelerometer.getStrength();
+  * @endcode
+  */
+int MicroBitAccelerometer::getStrength()
+{
+    requestUpdate();
+    double x = sample.x;
+    double y = sample.y;
+    double z = sample.z;
+
+    return (int) sqrt(x*x + y*y + z*z);
+}
+
+/**
   * Provides a rotation compensated pitch of the device, based on the latest update retrieved from the accelerometer.
   *
   * @return The pitch of the device, in degrees.
@@ -618,6 +636,7 @@ void MicroBitAccelerometer::recalculatePitchRoll()
   *
   * Example:
   * @code
+  * MicroBitDisplay display;
   *
   * if (accelerometer.getGesture() == SHAKE)
   *     display.scroll("SHAKE!");

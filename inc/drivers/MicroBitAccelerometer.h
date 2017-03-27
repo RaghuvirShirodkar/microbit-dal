@@ -134,10 +134,10 @@ class MicroBitAccelerometer : public MicroBitComponent
          * Device autodetection. Scans the given I2C bus for supported accelerometer devices.
          * if found, constructs an appropriate driver and returns it.
          *
-         * @param i2c the bus to scan. 
+         * @param i2c the bus to scan.
          *
          */
-        static MicroBitAccelerometer& autoDetect(MicroBitI2C &i2c); 
+        static MicroBitAccelerometer& autoDetect(MicroBitI2C &i2c);
 
         /**
          * Attempts to set the sample rate of the accelerometer to the specified value (in ms).
@@ -259,6 +259,17 @@ class MicroBitAccelerometer : public MicroBitComponent
         int getZ();
 
         /**
+         * Determines the magnitude of the vector from the latest update retrieved from the accelerometer
+         *
+         * @return The magnitude of the vector, in milli-g.
+         *
+         * @code
+         * accelerometer.getStrength();
+         * @endcode
+         */
+        int getStrength();
+
+        /**
          * Provides a rotation compensated pitch of the device, based on the latest update retrieved from the accelerometer.
          *
          * @return The pitch of the device, in degrees.
@@ -309,6 +320,7 @@ class MicroBitAccelerometer : public MicroBitComponent
          *
          * Example:
          * @code
+         * MicroBitDisplay display;
          *
          * if (accelerometer.getGesture() == SHAKE)
          *     display.scroll("SHAKE!");
