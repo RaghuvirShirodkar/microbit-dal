@@ -449,6 +449,20 @@ class MicroBitImage
     MicroBitImage shiftImageDown(int16_t n);
 
     /**
+      * Inverts the pixels of a copy of this Image.
+      *
+      *
+      * @return new inverted Image.
+      *
+      * @code
+      * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+      * MicroBitImage i(10,5,heart);
+      * i.invert();
+      * @endcode
+      */
+    MicroBitImage invert();
+
+    /**
       * Gets the width of this image.
       *
       * @return The width of this image.
