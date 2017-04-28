@@ -1,5 +1,6 @@
 {
   "name": "microbit-dal",
+<<<<<<< bc2d46de04ca5b9cabb64564a9ea3263e02f6169
 <<<<<<< e38583158d68a2f1d71532653445f84127d79070
 <<<<<<< 00488be27ac83976eca95409f2af33b72e781248
 <<<<<<< 7f747e0e1683976e05443844d62b16d6619b1683
@@ -17,6 +18,9 @@
 =======
   "version": "2.0.0-rc8-calliope-1.0.2-or2",
 >>>>>>> bump version for added MicroBitColor type
+=======
+  "version": "2.0.0-rc8-calliope-1.0.2-or3",
+>>>>>>> bump version for fixing compass
   "license": "MIT",
   "description": "The runtime library for the Calliope mini, based on the dal for BBC micro:bit, developed by Lancaster University",
   "keywords": [
