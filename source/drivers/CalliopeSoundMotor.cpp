@@ -2,8 +2,8 @@
 The MIT License (MIT)
 
 Copyright (c) 2016 Calliope GbR
-This software is provided by DELTA Systems (Georg Sommer) - Thomas Kern 
-und Björn Eberhardt GbR by arrangement with Calliope GbR. 
+This software is provided by DELTA Systems (Georg Sommer) - Thomas Kern
+und Björn Eberhardt GbR by arrangement with Calliope GbR.
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -91,10 +91,10 @@ void CalliopeSoundMotor::PWM_init()
     //create tasks to perform on timer compare match
     NRF_GPIOTE->POWER = 1;
     //task 0
-    nrf_gpiote_task_configure(0, CALLIOPE_PIN_MOTOR_IN1, NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_LOW);
+    nrf_gpiote_task_configure(0, CALLIOPE_PIN_MOTOR_IN1, NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_HIGH);
     nrf_gpiote_task_enable(0);
     //task 1
-    nrf_gpiote_task_configure(1, CALLIOPE_PIN_MOTOR_IN2, NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_HIGH);
+    nrf_gpiote_task_configure(1, CALLIOPE_PIN_MOTOR_IN2, NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_LOW);
     nrf_gpiote_task_enable(1);
 
     //Three NOPs are required to make sure configuration is written before setting tasks or getting events
@@ -141,7 +141,7 @@ void CalliopeSoundMotor::PWM_init()
 //MOTOR CONTROL FUNCTIONS - SINGLE MOTOR USE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//NOTE: the use of a motor control function will turn the sound off      
+//NOTE: the use of a motor control function will turn the sound off
 //functions to control the motor
 void CalliopeSoundMotor::motorOn(int8_t duty_percent)
 {
@@ -229,7 +229,7 @@ void CalliopeSoundMotor::motorCoast()
     //use function only for single motor use
     if (mode != 1) return;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -249,7 +249,7 @@ void CalliopeSoundMotor::motorBreak()
     //use function only for single motor use
     if (mode != 1) return;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -269,7 +269,7 @@ void CalliopeSoundMotor::motorSleep()
     //use function only for single motor use
     if (mode != 1) return;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -302,7 +302,7 @@ void CalliopeSoundMotor::motorAOn(uint8_t duty_percent)
     //set mode to dual motor use
     mode = 2;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -365,7 +365,7 @@ void CalliopeSoundMotor::motorBOn(uint8_t duty_percent)
     //set mode to dual motor use
     mode = 2;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -393,7 +393,7 @@ void CalliopeSoundMotor::motorBOn(uint8_t duty_percent)
     motor_AB_current_use |= 0x02;
 
     //values for duty cycle 0
-    if(uint8_t(duty_motor_B_percent/2) == 0 || (motor_AB_current_use == 0x02)) {
+    if(uint8_t(duty_motor_A_percent/2) == 0 || (motor_AB_current_use == 0x02)) {
         nrf_gpio_pin_clear(CALLIOPE_PIN_MOTOR_IN1);
         nrf_gpio_pin_clear(CALLIOPE_PIN_MOTOR_IN2);
     }
@@ -422,7 +422,7 @@ void CalliopeSoundMotor::motorAOff()
     //use function only for dual motor use
     if (mode != 2) return;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -467,7 +467,7 @@ void CalliopeSoundMotor::motorBOff()
     //use function only for dual motor use
     if (mode != 2) return;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -526,7 +526,7 @@ void CalliopeSoundMotor::soundOn(uint16_t frequency_hz)
     //set current use of dual motor mode
     motor_AB_current_use = 0;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -538,7 +538,7 @@ void CalliopeSoundMotor::soundOn(uint16_t frequency_hz)
     nrf_gpiote_task_disable(0);
     nrf_gpiote_task_disable(1);
 
-    //set pins to default values 
+    //set pins to default values
     nrf_gpio_pin_clear(CALLIOPE_PIN_MOTOR_IN1);
     nrf_gpio_pin_set(CALLIOPE_PIN_MOTOR_IN2);
 
@@ -576,7 +576,7 @@ void CalliopeSoundMotor::setSoundSilentMode(bool on_off)
     //return if sound is currently not in use
     if (mode != 3) return;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
@@ -584,7 +584,7 @@ void CalliopeSoundMotor::setSoundSilentMode(bool on_off)
     nrf_gpiote_task_disable(0);
     nrf_gpiote_task_disable(1);
 
-    //set pins to default values 
+    //set pins to default values
     nrf_gpio_pin_clear(CALLIOPE_PIN_MOTOR_IN1);
     nrf_gpio_pin_set(CALLIOPE_PIN_MOTOR_IN2);
 
@@ -601,7 +601,7 @@ void CalliopeSoundMotor::soundOff()
     //use function only for sound use
     if (mode != 3) return;
 
-    //stop & clear timer 
+    //stop & clear timer
     NRF_TIMER2->TASKS_STOP = 1;
     NRF_TIMER2->TASKS_CLEAR = 1;
 
