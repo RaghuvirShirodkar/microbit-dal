@@ -1,5 +1,6 @@
 {
   "name": "microbit-dal",
+<<<<<<< 9f25ad5fa3d1ad2d52ce0fb731bb6b7d69f79893
 <<<<<<< a5a913a683723f6dc2d022dd568afc85c8f900df
 <<<<<<< bc2d46de04ca5b9cabb64564a9ea3263e02f6169
 <<<<<<< e38583158d68a2f1d71532653445f84127d79070
@@ -25,6 +26,9 @@
 =======
   "version": "2.0.0-rc8-calliope-1.0.2-or4",
 >>>>>>> bump version for supporting Managed String comparation
+=======
+  "version": "2.0.0-rc8-calliope-1.0.2-or5",
+>>>>>>> #542 bump version of micrbit-dal
   "license": "MIT",
   "description": "The runtime library for the Calliope mini, based on the dal for BBC micro:bit, developed by Lancaster University",
   "keywords": [
