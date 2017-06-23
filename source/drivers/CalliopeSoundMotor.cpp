@@ -295,6 +295,9 @@ void CalliopeSoundMotor::motorAOn(uint8_t duty_percent)
 {
     //if value is out of bounds, do nothing
     if(duty_percent > 100) return;
+	if(duty_percent < 4) {
+		duty_percent = 4
+	}
 
     //save current setting
     duty_motor_A_percent = duty_percent;
@@ -358,7 +361,9 @@ void CalliopeSoundMotor::motorBOn(uint8_t duty_percent)
 {
     //if value is out of bounds, do nothing
     if(duty_percent > 100) return;
-
+    if(duty_percent < 4) {
+		duty_percent = 4
+	}
     //save current setting
     duty_motor_B_percent = duty_percent;
 
