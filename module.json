@@ -1,5 +1,6 @@
 {
   "name": "microbit-dal",
+<<<<<<< dd7359c33b92bb87d29573a511a15f8d16615785
 <<<<<<< 48628b9d3421e39d7839eb2280dd9a73553ffc26
 <<<<<<< 9f25ad5fa3d1ad2d52ce0fb731bb6b7d69f79893
 <<<<<<< a5a913a683723f6dc2d022dd568afc85c8f900df
@@ -33,6 +34,9 @@
 =======
   "version": "2.0.0-rc8-calliope-1.0.2-or6",
 >>>>>>> #536 535 bump microbit version (or6)
+=======
+  "version": "2.0.0-rc8-calliope-1.0.2-or7",
+>>>>>>> bump microbit-dal version
   "license": "MIT",
   "description": "The runtime library for the Calliope mini, based on the dal for BBC micro:bit, developed by Lancaster University",
   "keywords": [
