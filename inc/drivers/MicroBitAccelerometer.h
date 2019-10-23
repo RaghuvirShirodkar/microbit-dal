@@ -340,7 +340,6 @@ class MicroBitAccelerometer : public MicroBitComponent
          * Destructor.
          */
         ~MicroBitAccelerometer();
->>>>>>> ups
 
     private:
 
