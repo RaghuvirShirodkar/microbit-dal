@@ -87,10 +87,10 @@ DEALINGS IN THE SOFTWARE.
 
 // Defines where in memory persistent data is stored.
 #ifndef KEY_VALUE_STORE_PAGE
-#define KEY_VALUE_STORE_PAGE	                (PAGE_SIZE * (NRF_FICR->CODESIZE - 17)) 
+#define KEY_VALUE_STORE_PAGE	                (PAGE_SIZE * (NRF_FICR->CODESIZE - 17))
 #endif
 
-#ifndef BLE_BOND_DATA_PAGE 
+#ifndef BLE_BOND_DATA_PAGE
 #define BLE_BOND_DATA_PAGE                      (PAGE_SIZE * (NRF_FICR->CODESIZE - 18))
 #endif
 
@@ -147,6 +147,11 @@ extern uint32_t __etext;
 // Also used to drive the micro:bit runtime system ticker.
 #ifndef SYSTEM_TICK_PERIOD_MS
 #define SYSTEM_TICK_PERIOD_MS                   6
+#endif
+
+// Enable used_data field in Fiber structure (for thread-local data)
+#ifndef MICROBIT_FIBER_USER_DATA
+#define MICROBIT_FIBER_USER_DATA                0
 #endif
 
 //
@@ -330,6 +335,10 @@ extern uint32_t __etext;
 #define MICROBIT_RADIO_UPPER_FREQ_BAND 83
 #endif
 
+#ifndef MICROBIT_RADIO_MAXIMUM_RX_BUFFERS
+#define MICROBIT_RADIO_MAXIMUM_RX_BUFFERS 4
+#endif
+
 //
 // Accelerometer options
 //
@@ -427,7 +436,7 @@ extern uint32_t __etext;
 // Should be <= MBFS_BLOCK_SIZE.
 //
 #ifndef MBFS_CACHE_SIZE
-#define MBFS_CACHE_SIZE	    0   
+#define MBFS_CACHE_SIZE	    0
 #endif
 
 //
