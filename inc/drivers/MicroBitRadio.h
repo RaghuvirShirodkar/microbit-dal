@@ -67,6 +67,7 @@ struct FrameBuffer;
 #define MICROBIT_RADIO_DEFAULT_TX_POWER         6
 #define MICROBIT_RADIO_MAX_PACKET_SIZE          32
 #define MICROBIT_RADIO_HEADER_SIZE              4
+#define MICROBIT_RADIO_MAXIMUM_RX_BUFFERS       4
 
 // Known Protocol Numbers
 #define MICROBIT_RADIO_PROTOCOL_DATAGRAM        1       // A simple, single frame datagram. a little like UDP but with smaller packets. :-)
@@ -74,7 +75,8 @@ struct FrameBuffer;
 
 // Events
 #define MICROBIT_RADIO_EVT_DATAGRAM             1       // Event to signal that a new datagram has been received.
-#define MICROBIT_RADIO_EVT_PACKET_DROPPED       2       // Event to signal that a datagram has been dropped.
+#define MICROBIT_RADIO_EVT_PACKET_DROPPED       2 
+
 
 struct FrameBuffer
 {

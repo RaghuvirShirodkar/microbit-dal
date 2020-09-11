@@ -87,10 +87,10 @@ DEALINGS IN THE SOFTWARE.
 
 // Defines where in memory persistent data is stored.
 #ifndef KEY_VALUE_STORE_PAGE
-#define KEY_VALUE_STORE_PAGE	                (PAGE_SIZE * (NRF_FICR->CODESIZE - 17))
+#define KEY_VALUE_STORE_PAGE	                (PAGE_SIZE * (NRF_FICR->CODESIZE - 17)) 
 #endif
 
-#ifndef BLE_BOND_DATA_PAGE
+#ifndef BLE_BOND_DATA_PAGE 
 #define BLE_BOND_DATA_PAGE                      (PAGE_SIZE * (NRF_FICR->CODESIZE - 18))
 #endif
 
@@ -154,6 +154,18 @@ extern uint32_t __etext;
 #define MICROBIT_FIBER_USER_DATA                0
 #endif
 
+// Indicate get_fiber_list() API is supported
+#ifndef MICROBIT_GET_FIBER_LIST_SUPPORTED
+#define MICROBIT_GET_FIBER_LIST_SUPPORTED       1
+#endif
+
+// Maximum size of the FiberPool
+// Defines the size that the pool of unused Fiber contexts is permitted to grow to. After this point, memory
+// from unused Fiber contexts will be restored to the Heap Allocator.
+#ifndef MICROBIT_FIBER_MAXIMUM_FIBER_POOL_SIZE
+#define MICROBIT_FIBER_MAXIMUM_FIBER_POOL_SIZE  3
+#endif
+
 //
 // Message Bus:
 // Default behaviour for event handlers, if not specified in the listen() call
@@ -176,6 +188,21 @@ extern uint32_t __etext;
 #define MESSAGE_BUS_LISTENER_MAX_QUEUE_DEPTH    10
 #endif
 
+//
+// Define MESSAGE_BUS concurrency behaviour. 
+// Set to MESSAGE_BUS_CONCURRENT_LISTENERS to fire event handler 
+// concurrently when a given event is raised, and process events sequentially as they arrive (default micro:bit semantics). 
+// Set to MESSAGE_BUS_CONCURRENT_EVENTS to to fire event handlers sequentially for any given event, while still allowing 
+// concurrent processing of events.
+//
+//
+// Permissable values are:
+//   0: MESSAGE_BUS_CONCURRENT_LISTENERS
+//   1: MESSAGE_BUS_CONCURRENT_EVENTS
+//
+#ifndef MESSAGE_BUS_CONCURRENCY_MODE
+#define MESSAGE_BUS_CONCURRENCY_MODE            MESSAGE_BUS_CONCURRENT_LISTENERS
+#endif
 //
 // Core micro:bit services
 //
@@ -436,7 +463,7 @@ extern uint32_t __etext;
 // Should be <= MBFS_BLOCK_SIZE.
 //
 #ifndef MBFS_CACHE_SIZE
-#define MBFS_CACHE_SIZE	    0
+#define MBFS_CACHE_SIZE	    0   
 #endif
 
 //
