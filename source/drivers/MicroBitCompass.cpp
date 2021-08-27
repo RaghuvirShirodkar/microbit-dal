@@ -84,8 +84,8 @@ void MicroBitCompass::init(uint16_t id)
     this->samplePeriod = 100;
     this->configure();
 
-    // Assume that we have no calibration information.
-    status &= ~MICROBIT_COMPASS_STATUS_CALIBRATED;
+    // Assume that we have calibration information.
+    status |= MICROBIT_COMPASS_STATUS_CALIBRATED;
 
     // Indicate that we're up and running.
     status |= MICROBIT_COMPONENT_RUNNING;
