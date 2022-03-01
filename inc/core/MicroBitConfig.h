@@ -44,7 +44,7 @@ DEALINGS IN THE SOFTWARE.
 
 // Physical address of the top of SRAM.
 #ifndef MICROBIT_SRAM_END
-#define MICROBIT_SRAM_END                       0x20004000
+#define MICROBIT_SRAM_END                       0x20008000
 #endif
 
 // The end address of memory normally reserved for Soft Device.
