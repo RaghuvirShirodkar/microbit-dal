@@ -121,10 +121,6 @@ void CalliopeRGB::setColour(uint8_t red, uint8_t green, uint8_t blue, uint8_t wh
     this->send();
 }
 
-void CalliopeRGB::setColour(MicroBitColor color) {
-  setColour(color.getRed(), color.getGreen(), color.getBlue(), color.getWhite());
-}
-
 void CalliopeRGB::on()
 {
     this->send();

@@ -73,7 +73,7 @@ MicroBitAccelerometer::MicroBitAccelerometer(CoordinateSpace &cspace, uint16_t i
  * Device autodetection. Scans the given I2C bus for supported accelerometer devices.
  * if found, constructs an appropriate driver and returns it.
  *
- * @param i2c the bus to scan.
+ * @param i2c the bus to scan. 
  * @param id the unique EventModel id of this component. Defaults to: MICROBIT_ID_ACCELEROMETER
  *
  */
@@ -168,7 +168,7 @@ int MicroBitAccelerometer::update()
     MicroBitEvent e(id, MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE);
 
     return MICROBIT_OK;
-}
+};
 
 /**
   * A service function.
@@ -516,25 +516,6 @@ int MicroBitAccelerometer::getZ()
 {
     requestUpdate();
     return sample.z;
-}
-
-/**
-  * Determines the magnitude of the vector from the latest update retrieved from the accelerometer
-  *
-  * @return The magnitude of the vector, in milli-g.
-  *
-  * @code
-  * accelerometer.getStrength();
-  * @endcode
-  */
-int MicroBitAccelerometer::getStrength()
-{
-  requestUpdate();
-  double x = sample.x;
-  double y = sample.y;
-  double z = sample.z;
-
-  return (int) sqrt(x*x + y*y + z*z);
 }
 
 /**
