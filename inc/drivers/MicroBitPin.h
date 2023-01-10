@@ -42,8 +42,6 @@ und Björn Eberhardt GbR by arrangement with Calliope GbR.
 #define IO_STATUS_TOUCH_IN                  0x10        // Pin is a makey-makey style touch sensor
 #define IO_STATUS_EVENT_ON_EDGE             0x20        // Pin will generate events on pin change
 #define IO_STATUS_EVENT_PULSE_ON_EDGE       0x40        // Pin will generate events on pin change
-#define IO_STATUS_EVENTBUS_ENABLED          0x80        // Pin is will generate events on change
-
 #ifdef TARGET_NRF51_CALLIOPE
 
 // micro:bit compatibility pin settings for Calliope mini
@@ -105,12 +103,12 @@ und Björn Eberhardt GbR by arrangement with Calliope GbR.
 #define MICROBIT_PIN_MAX_SERVO_RANGE        180
 #define MICROBIT_PIN_DEFAULT_SERVO_RANGE    2000
 #define MICROBIT_PIN_DEFAULT_SERVO_CENTER   1500
-// config
+
 #define MICROBIT_PIN_EVENT_NONE             0
 #define MICROBIT_PIN_EVENT_ON_EDGE          1
 #define MICROBIT_PIN_EVENT_ON_PULSE         2
 #define MICROBIT_PIN_EVENT_ON_TOUCH         3
-// event output
+
 #define MICROBIT_PIN_EVT_RISE               2
 #define MICROBIT_PIN_EVT_FALL               3
 #define MICROBIT_PIN_EVT_PULSE_HI           4
@@ -300,31 +298,6 @@ class MicroBitPin : public MicroBitComponent
       * @endcode
       */
     int getAnalogValue();
-
-    /**
-      * Configures microphone pin as an analogue input (if necessary), and samples the Pin for its analog value.
-      * Normalises the read value in 1-100 range
-      *
-      * @return the current analogue level on the pin, in the range 1-100, or
-      *         MICROBIT_NOT_SUPPORTED if the given pin does not have analog capability.
-      *
-      */
-    int getMicrophoneValue();
-
-    /**
-    * Reads pulse
-    */
-    int readPulse(int level);
-
-    /**
-    * Reads high pulse
-    */
-    int readPulseHigh();
-
-    /**
-    * Reads low pulse
-    */
-    int readPulseLow();
 
     /**
       * Determines if this IO pin is currently configured as an input.
