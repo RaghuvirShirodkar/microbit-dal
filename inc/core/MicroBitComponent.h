@@ -48,6 +48,13 @@ und Björn Eberhardt GbR by arrangement with Calliope GbR.
 #define MICROBIT_ID_SERIAL              12
 #define MICROBIT_ID_GESTURE             13          // Gesture events
 
+//EDGE connector events
+#ifdef TARGET_NRF51_CALLIOPE
+#define MICROBIT_IO_PINS                21
+#else
+#define MICROBIT_IO_PINS                20
+#endif
+
 #define MICROBIT_ID_IO_P0               100         //P0 is the left most pad (ANALOG/DIGITAL)  (CM: P1)
 #define MICROBIT_ID_IO_P1               101         //P1 is the middle pad (ANALOG/DIGITAL)     (CM: P2)
 #define MICROBIT_ID_IO_P2               102         //P2 is the right most pad (ANALOG/DIGITAL) (CM: analog/tx)
@@ -91,17 +98,17 @@ und Björn Eberhardt GbR by arrangement with Calliope GbR.
   *
   * All components should inherit from this class.
   *
-  * If a component requires regular updates, then that component can be added to the 
+  * If a component requires regular updates, then that component can be added to the
   * to the systemTick and/or idleTick queues. This provides a simple, extensible mechanism
   * for code that requires periodic/occasional background processing but does not warrant
-  * the complexity of maintaining its own thread. 
+  * the complexity of maintaining its own thread.
   *
-  * Two levels of support are available. 
+  * Two levels of support are available.
   *
   * systemTick() provides a periodic callback during the
   * micro:bit's system timer interrupt. This provides a guaranteed periodic callback, but in interrupt context
   * and is suitable for code with lightweight processing requirements, but strict time constraints.
-  * 
+  *
   * idleTick() provides a periodic callback whenever the scheduler is idle. This provides occasional, callbacks
   * in the main thread context, but with no guarantees of frequency. This is suitable for non-urgent background tasks.
   *
@@ -138,7 +145,7 @@ class MicroBitComponent
 
     /**
       * The idle thread will call this member function once the component has been added to the array
-      * of idle components using fiber_add_idle_component. 
+      * of idle components using fiber_add_idle_component.
       */
     virtual void idleTick()
     {
