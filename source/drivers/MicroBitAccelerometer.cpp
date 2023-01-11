@@ -519,6 +519,25 @@ int MicroBitAccelerometer::getZ()
 }
 
 /**
+  * Determines the magnitude of the vector from the latest update retrieved from the accelerometer
+  *
+  * @return The magnitude of the vector, in milli-g.
+  *
+  * @code
+  * accelerometer.getStrength();
+  * @endcode
+  */
+int MicroBitAccelerometer::getStrength()
+{
+  requestUpdate();
+  double x = sample.x;
+  double y = sample.y;
+  double z = sample.z;
+
+  return (int) sqrt(x*x + y*y + z*z);
+}
+
+/**
   * Provides a rotation compensated pitch of the device, based on the latest update retrieved from the accelerometer.
   *
   * @return The pitch of the device, in degrees.
