@@ -108,7 +108,7 @@ class MicroBitMessageBus : public EventModel, public MicroBitComponent
       * @note It is recommended that all external code uses the send() function instead of this function,
       *       or the constructors provided by MicrobitEvent.
       */
-	int process(MicroBitEvent evt, bool urgent = false);
+	int process(MicroBitEvent &evt, bool urgent = false);
 
     /**
       * Returns the microBitListener with the given position in our list.
@@ -147,6 +147,7 @@ class MicroBitMessageBus : public EventModel, public MicroBitComponent
     MicroBitListener            *listeners;		    // Chain of active listeners.
     MicroBitEventQueueItem      *evt_queue_head;    // Head of queued events to be processed.
     MicroBitEventQueueItem      *evt_queue_tail;    // Tail of queued events to be processed.
+    uint16_t                    nonce_val;          // The last nonce issued.
     uint16_t                    queueLength;        // The number of events currently waiting to be processed.
 
     /**
