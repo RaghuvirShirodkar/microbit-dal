@@ -20,6 +20,7 @@ set(YOTTA_AUTO_MICROBIT-DAL_CPP_FILES
     "types/ManagedString.cpp"
     "types/MicroBitEvent.cpp"
     "types/MicroBitImage.cpp"
+    "types/MicroBitColor.cpp"
     "types/PacketBuffer.cpp"
     "types/RefCounted.cpp"
 

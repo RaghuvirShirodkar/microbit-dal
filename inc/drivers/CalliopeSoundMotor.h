@@ -61,7 +61,8 @@ class CalliopeSoundMotor : public MicroBitComponent
     static uint8_t motor_AB_current_use;
     static uint16_t frequency_sound_hz;
     static bool silent_mode;
-    
+    static bool tasks_reconfigured_for_single_motor;
+
     //current use of the controller -> 0: off, 1: motor use, 2: dual motor use, 3: sound use
     static uint8_t mode;
     
