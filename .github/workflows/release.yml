@@ -39,11 +39,12 @@ jobs:
           ref: bluetooth-enabled
       - name: Build microbit-dal static libraries for Bluetooth devices
         run: |
+          yotta clean
           yotta target calliope-mini-classic-gcc@https://github.com/calliope-mini/target-calliope-mini-classic-gcc
           yotta --config=./config.json build
       - name: Prepare release for Bluetooth devices
         run: |
-          cd build/calliope-mini-classic-gcc/
+          cd build/calliope-mini-classic-gcc/ && ls -a && ls -a ../../release-prep
           cp source/microbit-dal.a ../../release-prep/microbit-dal-b.a
           cp ym/mbed-classic/existing/mbed-classic.a ../../release-prep/mbed-classic-b.a
           ls -a ../../release-prep
