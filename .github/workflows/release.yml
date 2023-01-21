@@ -17,37 +17,44 @@ jobs:
           curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py # Fetch get-pip.py for python 2.7 
           python get-pip.py
           pip install yotta
-      - name: Checkout `bluetooth-disabled` branch
+          
+      - name: Checkout 'bluetooth-disabled' branch
         uses: actions/checkout@v3
         with:
           ref: bluetooth-disabled
-      - name: Build microbit-dal static libraries for non-Bluetooth devices
+          
+      - name: Build static libraries for non-Bluetooth devices
         run: |
           yotta target calliope-mini-classic-gcc@https://github.com/calliope-mini/target-calliope-mini-classic-gcc
           yotta --config=./config.json build
+          
       - name: Prepare release for non-Bluetooth devices
         run: |
           mkdir -p /tmp/release-prep
-          cd build/calliope-mini-classic-gcc/
+          cd build/calliope-mini-classic-gcc/ && cat yotta_config.h | grep YOTTA_CFG_MICROBIT_DAL_BLUETOOTH_ENABLE
           cp source/microbit-dal.a /tmp/release-prep/
           cp ym/ble/source/ble.a ym/ble-nrf51822/source/ble-nrf51822.a ym/mbed-classic/existing/mbed-classic.a ym/nrf51-sdk/source/nrf51-sdk.a /tmp/release-prep
           cd ../../yotta_targets/calliope-mini-classic-gcc/
           cp bootloader/* ld/* softdevice/* /tmp/release-prep
-      - name: Checkout `bluetooth-enabled` branch
+          
+      - name: Checkout 'bluetooth-enabled' branch
         uses: actions/checkout@v3
         with:
           ref: bluetooth-enabled
-      - name: Build microbit-dal static libraries for Bluetooth devices
+          
+      - name: Build static libraries for Bluetooth devices
         run: |
           yotta clean
           yotta target calliope-mini-classic-gcc@https://github.com/calliope-mini/target-calliope-mini-classic-gcc
           yotta --config=./config.json build
+          
       - name: Prepare release for Bluetooth devices
         run: |
-          cd build/calliope-mini-classic-gcc/ && ls -a /tmp/release-prep
+          cd build/calliope-mini-classic-gcc/ && cat yotta_config.h | grep YOTTA_CFG_MICROBIT_DAL_BLUETOOTH_ENABLE
           cp source/microbit-dal.a /tmp/release-prep/microbit-dal-b.a
           cp ym/mbed-classic/existing/mbed-classic.a /tmp/release-prep/mbed-classic-b.a
-          ls -a ../../release-prep
+          ls -a /tmp/release-prep
+          
 #       - name: Create release
 #         id: create_release
 #         uses: actions/create-release@v1
