@@ -11,13 +11,11 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - name: Install yotta
+      - name: Install dependencies
         run: |
-          sudo apt-get update && sudo apt-get install python-setuptools  cmake build-essential ninja-build python-dev libffi-dev libssl-dev
-          python --version
+          sudo apt-get update && sudo apt-get install python-setuptools  cmake build-essential ninja-build python-dev libffi-dev libssl-dev gcc-arm-none-eabi
           curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py # Fetch get-pip.py for python 2.7 
           python get-pip.py
-          pip --version
           pip install yotta
       - name: Checkout `bluetooth-disabled` branch
         uses: actions/checkout@v3
