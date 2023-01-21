@@ -57,7 +57,8 @@ jobs:
       - name: Pack release
         id: pack_release
         run: |
-          zip -r /tmp/microbit-dal.zip /tmp/release-prep/*
+          cd /tmp/release-prep
+          zip -r microbit-dal.zip .
           
       - name: Create release
         id: create_release
