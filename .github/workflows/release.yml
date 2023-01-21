@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install yotta
-        uses: marvinschopf/install-yotta@v1.0.0
+        run: |
+          sudo apt-get update && sudo apt-get install python-setuptools  cmake build-essential ninja-build python-dev libffi-dev libssl-dev && sudo easy_install pip
+          pip install yotta
       - name: Checkout `bluetooth-disabled` branch
         uses: actions/checkout@v3
         with:
@@ -21,6 +23,8 @@ jobs:
         run: |
           yotta target calliope-mini-classic-gcc@https://github.com/calliope-mini/target-calliope-mini-classic-gcc
           yotta --config=./config.json build
+      - name: List dir
+        run: ls -a
 #       - name: Pack Release
 #         id: pack_release
 #         run: |
