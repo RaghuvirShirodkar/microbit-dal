@@ -25,14 +25,16 @@ jobs:
         run: |
           yotta target calliope-mini-classic-gcc@https://github.com/calliope-mini/target-calliope-mini-classic-gcc
           yotta --config=./config.json build
-      - name: List dir
-        run: ls -a
-#       - name: Pack Release
-#         id: pack_release
-#         run: |
-#           docker create --name arduino-resources arduino-resources
-#           docker cp arduino-resources:/tmp/arduino-release/. ./arduino-resources
-#           zip -r ./arduino-resources.zip ./arduino-resources
+      - name: Prepare release
+        run: |
+          mkdir -p release-prep
+          cd build/calliope-mini-classic-gcc/
+          cp source/microbit-dal.a ../../release-prep/
+          cp ym/ble/source/ble.a ym/ble-nrf51822/source/ble-nrf51822.a ym/mbed-classic/existing/mbed-classic-b.a ym/nrf51-sdk/source/nrf51-sdk.a ../../release-prep
+          cd ../../yotta_target/calliope-mini-classic-gcc/
+          cp bootloader/* ld/* softdevice/* ../../release-prep
+          ls -a ../../release-prep
+          echo $PWD
 #       - name: Create release
 #         id: create_release
 #         uses: actions/create-release@v1
