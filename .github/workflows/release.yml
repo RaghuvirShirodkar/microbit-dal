@@ -27,12 +27,12 @@ jobs:
           yotta --config=./config.json build
       - name: Prepare release for non-Bluetooth devices
         run: |
-          mkdir -p release-prep
+          mkdir -p /tmp/release-prep
           cd build/calliope-mini-classic-gcc/
-          cp source/microbit-dal.a ../../release-prep/
-          cp ym/ble/source/ble.a ym/ble-nrf51822/source/ble-nrf51822.a ym/mbed-classic/existing/mbed-classic.a ym/nrf51-sdk/source/nrf51-sdk.a ../../release-prep
+          cp source/microbit-dal.a /tmp/release-prep/
+          cp ym/ble/source/ble.a ym/ble-nrf51822/source/ble-nrf51822.a ym/mbed-classic/existing/mbed-classic.a ym/nrf51-sdk/source/nrf51-sdk.a /tmp/release-prep
           cd ../../yotta_targets/calliope-mini-classic-gcc/
-          cp bootloader/* ld/* softdevice/* ../../release-prep
+          cp bootloader/* ld/* softdevice/* /tmp/release-prep
       - name: Checkout `bluetooth-enabled` branch
         uses: actions/checkout@v3
         with:
@@ -44,9 +44,9 @@ jobs:
           yotta --config=./config.json build
       - name: Prepare release for Bluetooth devices
         run: |
-          cd build/calliope-mini-classic-gcc/ && ls -a && ls -a ../../release-prep
-          cp source/microbit-dal.a ../../release-prep/microbit-dal-b.a
-          cp ym/mbed-classic/existing/mbed-classic.a ../../release-prep/mbed-classic-b.a
+          cd build/calliope-mini-classic-gcc/ && ls -a /tmp/release-prep
+          cp source/microbit-dal.a /tmp/release-prep/microbit-dal-b.a
+          cp ym/mbed-classic/existing/mbed-classic.a /tmp/release-prep/mbed-classic-b.a
           ls -a ../../release-prep
 #       - name: Create release
 #         id: create_release
