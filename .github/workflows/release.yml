@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install yotta
+        uses: marvinschopf/install-yotta@v1.0.0
+      - name: Checkout `bluetooth-disabled` branch
+        uses: actions/checkout@v3
+        with:
+          ref: bluetooth-disabled
+      - name: Build microbit-dal static libraries for non-Bluetooth devices
+        run: |
+          yotta target calliope-mini-classic-gcc@https://github.com/calliope-mini/target-calliope-mini-classic-gcc
+          yotta --config=./config.json build
+#       - name: Pack Release
+#         id: pack_release
+#         run: |
+#           docker create --name arduino-resources arduino-resources
+#           docker cp arduino-resources:/tmp/arduino-release/. ./arduino-resources
+#           zip -r ./arduino-resources.zip ./arduino-resources
+#       - name: Create release
+#         id: create_release
+#         uses: actions/create-release@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           tag_name: ${{ github.ref }}
+#           release_name: Release ${{ github.ref }}
+#           draft: false
+#           prerelease: false
+#       - name: Upload release asset
+#         id: upload-release-asset 
+#         uses: actions/upload-release-asset@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           upload_url: ${{ steps.create_release.outputs.upload_url }}
+#           asset_path: ./arduino-resources.zip
+#           asset_name: arduino-resources.zip
+#           asset_content_type: application/zip
