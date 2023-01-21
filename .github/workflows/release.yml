@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Install yotta
         run: |
-          sudo apt-get update && sudo apt-get install python-setuptools  cmake build-essential ninja-build python-dev libffi-dev libssl-dev && sudo easy_install pip
+          sudo apt-get update && sudo apt-get install python-setuptools  cmake build-essential ninja-build python-dev libffi-dev libssl-dev && sudo easy_install pip && sudo apt-get install python-cffi
           pip install yotta
       - name: Checkout `bluetooth-disabled` branch
         uses: actions/checkout@v3
