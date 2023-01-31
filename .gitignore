@@ -7,3 +7,4 @@ yotta_targets
 *~
 Makefile
 .vscode
+.idea
