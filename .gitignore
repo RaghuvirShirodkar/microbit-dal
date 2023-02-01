@@ -6,4 +6,4 @@ yotta_targets
 *.swp
 *~
 Makefile
-.vscode
+.idea
