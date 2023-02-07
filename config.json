@@ -2,6 +2,7 @@
   "microbit-dal": {
     "bluetooth": {
       "enabled": 0
-    }
+    },
+    "RAM_SIZE": "\"32K\""
   }
 }
